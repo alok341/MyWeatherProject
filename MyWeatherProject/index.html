@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Weather App - Loading Page</title>
+  <style>
+   body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url("images/image.png") no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 50px;
+            min-height: 100vh;
+        }
+
+    .loading-screen {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .loader {
+      border: 6px solid #f3f3f3;
+      border-top: 6px solid #3498db;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .form-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    input[type="text"] {
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+      width: 250px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      padding: 12px 20px;
+      border-radius: 8px;
+      border: none;
+      background-color: white;
+      color: #333;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ddd;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container" id="formContainer">
+    <h2>Enter City for Weather</h2>
+    <form action="MyServlet" method="post" onsubmit="showLoading()">
+      <input type="text" name="userInput" placeholder="Enter City Name" required>
+      <button type="submit">Get Weather</button>
+    </form>
+  </div>
+
+  <div class="loading-screen" id="loadingScreen">
+    <div class="loader"></div>
+    <p>Fetching weather data...</p>
+  </div>
+
+  <script>
+    function showLoading() {
+      document.getElementById('formContainer').classList.add('hidden');
+      document.getElementById('loadingScreen').style.display = 'flex';
+    }
+  </script>
+</body>
+</html>
